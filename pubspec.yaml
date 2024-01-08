@@ -16,6 +16,7 @@ dependencies:
   #DI
   get_it: ^7.6.4
 
+
   #State Management
   bloc: ^8.1.2
   flutter_bloc: ^8.1.3

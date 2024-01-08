@@ -9,8 +9,7 @@ class AppDimensions {
   static const double xLarge = 20;
   static const double xxLarge = 22;
   static const double xxxLarge = 26;
-  static const double smallDisplay = 30;
-  static const double mediumDisplay = 34;
+  static const double smallDisplay = 28;
 
   static const double buttonHeight = 52;
 

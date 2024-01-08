@@ -13,7 +13,7 @@ class ColorizeImageLoading extends ColorizeImageState {}
 
 class ColorizeImageSuccess extends ColorizeImageState {
   final Uint8List colorizedImageBytes;
-  const ColorizeImageSuccess({required this.colorizedImageBytes});
+  const ColorizeImageSuccess(this.colorizedImageBytes);
 
   @override
   List<Object> get props => [colorizedImageBytes];
@@ -26,5 +26,4 @@ class ColorizeImageFailure extends ColorizeImageState {
   @override
   List<Object> get props => [errorMessage];
 }
-
 

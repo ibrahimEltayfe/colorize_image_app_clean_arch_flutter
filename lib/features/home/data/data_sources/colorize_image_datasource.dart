@@ -6,7 +6,8 @@ class ColorizeImageDataSource{
   final DioHelper dioHelper;
   ColorizeImageDataSource(this.dioHelper);
 
-  Future<Response<Map<String,dynamic>?>> generateColorizedImage(ColorizeImageApiInput apiInput) async{
-    return await dioHelper.uploadImage(apiInput.imageData);
+  Future<Response<Map<String, dynamic>?>> generateColorizedImage(ColorizeImageApiInput apiInput) async{
+    final FormData formData = FormData.fromMap(apiInput.toMap());
+    return dioHelper.uploadImage(formData);
   }
 }

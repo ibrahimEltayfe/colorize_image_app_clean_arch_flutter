@@ -13,7 +13,7 @@ class RoutesManager{
             settings: settings,
         );
 
-      case ImageDownloadPage.routeName:
+       case ImageDownloadPage.routeName:
         return MaterialPageRoute(
           builder: (_)=> ImageDownloadPage(imageBytes: settings.arguments as Uint8List,),
           settings: settings,

@@ -2,14 +2,13 @@ import 'package:colorize_image/core/utils/constants/app_colors.dart';
 import 'package:colorize_image/core/utils/constants/app_dimensions.dart';
 import 'package:colorize_image/core/utils/constants/app_image_paths.dart';
 import 'package:colorize_image/core/utils/constants/app_styles.dart';
-import 'package:colorize_image/core/utils/extensions/mediaquery_size.dart';
 import 'package:colorize_image/core/utils/ui/app_button.dart';
 import 'package:colorize_image/core/utils/ui/app_image.dart';
-import 'package:colorize_image/features/home/domain/entities/inputs/colorize_image_input_entity.dart';
+import 'package:colorize_image/features/home/domain/entities/inputs/colorize_image_input.dart';
 import 'package:colorize_image/features/home/presentation/manager/colorize_image_cubit.dart';
 import 'package:colorize_image/features/home/presentation/pages/image_download_page.dart';
 import 'package:colorize_image/features/home/presentation/widgets/gradient_text.dart';
-import 'package:colorize_image/features/home/presentation/widgets/image_picker_area_view.dart';
+import 'package:colorize_image/features/home/presentation/widgets/image_picker_media_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -30,14 +29,14 @@ class HomePage extends StatelessWidget {
 }
 
 
-class _HomeBody extends StatefulWidget {
+class _HomeBody extends  StatefulWidget {
   const _HomeBody({super.key});
 
   @override
-  State<_HomeBody> createState() => __HomeBodyState();
+  State<_HomeBody> createState() => _HomeBodyState();
 }
 
-class __HomeBodyState extends State<_HomeBody> {
+class _HomeBodyState extends State<_HomeBody> {
   XFile? imageFile;
 
   @override
@@ -49,41 +48,33 @@ class __HomeBodyState extends State<_HomeBody> {
           child: SingleChildScrollView(
             child: Column(
               children: [
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    GradientText(
-                      gradientColors: AppColors.primaryGradientColor,
+                    const GradientText(
                       text: "COLORIZE ",
-                      textStyle: AppTextStyles.bold(
-                        fontSize: AppDimensions.smallDisplay-2
-                      ),
                     ),
 
-                    Text("YOUR IMAGE",style: AppTextStyles.bold(
-                        fontSize: AppDimensions.smallDisplay-2
-                    ),)
+                    Text("YOUR IMAGE", style: AppTextStyles.bold(fontSize: AppDimensions.smallDisplay),)
                   ],
                 ),
 
-                SizedBox(height: AppPadding.xxLarge,),
+                const SizedBox(height: AppPadding.xxLarge,),
 
                 SizedBox(
                   width: 350,
                   height: 180,
                   child: Stack(
                     clipBehavior: Clip.none,
-                    alignment: Alignment.center,
-                    fit: StackFit.loose,
                     children: [
                       Positioned(
-                        left: 2,
                         top: 0,
+                        left: 0,
                         child: Transform.rotate(
                           angle: 50,
-
-                          child: const AppImage.asset(
-                            imageLocalPath: AppImagePaths.blackAndWhiteImage,
+                          child: AppImage.asset(
+                            imageAssetPath: AppImagePaths.blackAndWhiteImage,
                             width: 150,
                             height: 130,
                           ),
@@ -94,11 +85,11 @@ class __HomeBodyState extends State<_HomeBody> {
                         top: 10,
                         left: 124,
                         child: AppImage.asset(
-                          imageLocalPath: AppImagePaths.coloredImage,
+                          imageAssetPath: AppImagePaths.coloredImage,
                           width: 230,
                           height: 170,
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),
@@ -106,26 +97,24 @@ class __HomeBodyState extends State<_HomeBody> {
                 SizedBox(height: AppPadding.mediumDisplay,),
 
                 ImagePickerAreaView(
-                  onPickImage : (XFile file){
+                  onPickImage: (file) {
                     imageFile = file;
-                  }
+                  },
                 ),
 
-                SizedBox(height: AppPadding.xLarge,),
+                SizedBox(height: AppPadding.xxLarge,),
 
                 BlocConsumer<ColorizeImageCubit,ColorizeImageState>(
                   listener: (context, state) {
                     if(state is ColorizeImageFailure){
                       Fluttertoast.showToast(msg: state.errorMessage,backgroundColor: AppColors.red,textColor: AppColors.white);
-
                     }else if(state is ColorizeImageSuccess){
                       Navigator.pushNamed(context, ImageDownloadPage.routeName,arguments: state.colorizedImageBytes);
                     }
                   },
                   builder: (context,state) {
-
                     return AppButton(
-                      onTap: () {
+                      onTap: (){
                         if(imageFile == null){
                           Fluttertoast.showToast(msg: "Please pick an image",backgroundColor: AppColors.red,textColor: AppColors.white);
                           return;
@@ -138,8 +127,7 @@ class __HomeBodyState extends State<_HomeBody> {
                         context.read<ColorizeImageCubit>().generateColorizedImage(imageInput);
                       },
                       isLoading: state is ColorizeImageLoading,
-                      width: 332,
-                      title: "Generate",
+                      title: "Generate"
                     );
                   }
                 )

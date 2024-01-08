@@ -1,6 +1,5 @@
 import 'dart:developer';
 
-import 'package:colorize_image/core/error_handling/failures.dart';
 import 'package:colorize_image/core/utils/constants/end_points.dart';
 import 'package:dio/dio.dart';
 
@@ -23,8 +22,6 @@ class DioHelper {
         },
         options: Options(
           headers: {
-            //"X-RapidAPI-Key" : EndPoints.apiKey,
-            //"x-rapidapi-host": EndPoints.hostUrl,
             "X-API-KEY": EndPoints.apiKey,
             "quality" : 100
           }

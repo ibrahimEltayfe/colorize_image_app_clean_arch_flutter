@@ -1,5 +1,5 @@
-import 'package:colorize_image/core/config/injector/injector_config.dart';
-import 'package:colorize_image/core/config/router/app_routers_config.dart';
+import 'package:colorize_image/core/utils/injector/injector_config.dart';
+import 'package:colorize_image/core/utils/router/app_routers_config.dart';
 import 'package:colorize_image/features/home/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 

@@ -1,10 +1,10 @@
 import 'dart:developer';
-import 'package:colorize_image/core/config/injector/injector_config.dart';
+import 'package:colorize_image/core/utils/injector/injector_config.dart';
 import 'package:colorize_image/core/utils/services/network_checker.dart';
 
 import 'failures.dart';
 
-  Future<void> handleFailures(
+  Future<void> failuresHandler(
     Function() task, {
       required Function(Failure failure) onError,
       bool ignoreNetworkCheck = false,

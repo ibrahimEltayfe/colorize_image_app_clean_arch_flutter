@@ -1,9 +1,6 @@
 import 'package:image_picker/image_picker.dart';
 
 class AppMediaPicker {
-  static final instance = AppMediaPicker._();
-  AppMediaPicker._();
-
   final _mediaPicker = ImagePicker();
 
   void onPickImage({
@@ -13,6 +10,7 @@ class AppMediaPicker {
      try{
        final imageFile = await _mediaPicker.pickImage(
          source: ImageSource.gallery,
+         imageQuality: 70
        );
 
        if (imageFile != null) {
