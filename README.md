@@ -1,5 +1,7 @@
 # colorize_image_app
 
+<img src="https://github.com/user-attachments/assets/86493b27-3cab-4e4d-ba55-69529bd46eaf" width="300" >
+
 An app to transform black and white images to colorized image.
 
 ```.
